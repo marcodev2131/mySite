@@ -28,11 +28,8 @@ class UserFactory(factory.django.DjangoModelFactory):
             return user
         
 class PostFactory(factory.django.DjangoModelFactory):
-    title = factory.LazyAttribute(lambda x: faker.sentence())
-    created_on = factory.LazyAttribute(lambda x: now())
-    author = factory.SubFactory(UserFactory)
-    status = 0
-
-
     class Meta:
         model = Post
+
+    title = factory.Sequence(lambda n: f'Post {n}')
+    content = "Conteúdo de teste"
